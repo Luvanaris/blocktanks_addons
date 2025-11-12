@@ -1461,29 +1461,28 @@
             type: "toggle",
             defaultValue: false,
             callback: (value) => {
+                let overlay = document.getElementById("blocktans_addons_bw_filter_overlay")
                 if (value === true) {
-                    let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (!blocktans_addons_filter_overlay) {
-                        blocktans_addons_filter_overlay = document.createElement("div")
-                        blocktans_addons_filter_overlay.id = "blocktans_addons_filter_overlay"
-                        blocktans_addons_filter_overlay.style.position = "fixed"
-                        blocktans_addons_filter_overlay.style.top = "0"
-                        blocktans_addons_filter_overlay.style.left = "0"
-                        blocktans_addons_filter_overlay.style.width = "100vw"
-                        blocktans_addons_filter_overlay.style.height = "100vh"
-                        blocktans_addons_filter_overlay.style.pointerEvents = "none"
-                        blocktans_addons_filter_overlay.style.zIndex = "9999"
-                        blocktans_addons_filter_overlay.style.backdropFilter = "grayscale(100%)"
-                        document.body.appendChild(blocktans_addons_filter_overlay)
+                    if (!overlay) {
+                        overlay = document.createElement("div")
+                        overlay.id = "blocktans_addons_bw_filter_overlay"
+                        overlay.style.position = "fixed"
+                        overlay.style.top = "0"
+                        overlay.style.left = "0"
+                        overlay.style.width = "100vw"
+                        overlay.style.height = "100vh"
+                        overlay.style.pointerEvents = "none"
+                        overlay.style.zIndex = "9999"
+                        overlay.style.backdropFilter = "grayscale(100%)"
+                        document.body.appendChild(overlay)
                     }
                     else {
-                        blocktans_addons_filter_overlay.style.backdropFilter = "grayscale(100%)"
+                        overlay.style.backdropFilter = "grayscale(100%)"
                     }
                 }
                 else {
-                    let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (blocktans_addons_filter_overlay && blocktans_addons_filter_overlay.style.backdropFilter === "grayscale(100%)") {
-                        blocktans_addons_filter_overlay.remove()
+                    if (overlay) {
+                        overlay.remove()
                     }
                 }
             }
@@ -1494,29 +1493,28 @@
             type: "toggle",
             defaultValue: false,
             callback: (value) => {
+                let overlay = document.getElementById("blocktans_addons_sepia_filter_overlay")
                 if (value === true) {
-                    let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (!blocktans_addons_filter_overlay) {
-                        blocktans_addons_filter_overlay = document.createElement("div")
-                        blocktans_addons_filter_overlay.id = "blocktans_addons_filter_overlay"
-                        blocktans_addons_filter_overlay.style.position = "fixed"
-                        blocktans_addons_filter_overlay.style.top = "0"
-                        blocktans_addons_filter_overlay.style.left = "0"
-                        blocktans_addons_filter_overlay.style.width = "100vw"
-                        blocktans_addons_filter_overlay.style.height = "100vh"
-                        blocktans_addons_filter_overlay.style.pointerEvents = "none"
-                        blocktans_addons_filter_overlay.style.zIndex = "9999"
-                        blocktans_addons_filter_overlay.style.backdropFilter = "sepia(100%)"
-                        document.body.appendChild(blocktans_addons_filter_overlay)
+                    if (!overlay) {
+                        overlay = document.createElement("div")
+                        overlay.id = "blocktans_addons_sepia_filter_overlay"
+                        overlay.style.position = "fixed"
+                        overlay.style.top = "0"
+                        overlay.style.left = "0"
+                        overlay.style.width = "100vw"
+                        overlay.style.height = "100vh"
+                        overlay.style.pointerEvents = "none"
+                        overlay.style.zIndex = "9999"
+                        overlay.style.backdropFilter = "sepia(100%)"
+                        document.body.appendChild(overlay)
                     }
                     else {
-                        blocktans_addons_filter_overlay.style.backdropFilter = "sepia(100%)"
+                        overlay.style.backdropFilter = "sepia(100%)"
                     }
                 }
                 else {
-                    let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (blocktans_addons_filter_overlay && blocktans_addons_filter_overlay.style.backdropFilter === "sepia(100%)") {
-                        blocktans_addons_filter_overlay.remove()
+                    if (overlay) {
+                        overlay.remove()
                     }
                 }
             }
@@ -1527,29 +1525,28 @@
             type: "toggle",
             defaultValue: false,
             callback: (value) => {
+                let overlay = document.getElementById("blocktans_addons_invert_filter_overlay")
                 if (value === true) {
-                    let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (!blocktans_addons_filter_overlay) {
-                        blocktans_addons_filter_overlay = document.createElement("div")
-                        blocktans_addons_filter_overlay.id = "blocktans_addons_filter_overlay"
-                        blocktans_addons_filter_overlay.style.position = "fixed"
-                        blocktans_addons_filter_overlay.style.top = "0"
-                        blocktans_addons_filter_overlay.style.left = "0"
-                        blocktans_addons_filter_overlay.style.width = "100vw"
-                        blocktans_addons_filter_overlay.style.height = "100vh"
-                        blocktans_addons_filter_overlay.style.pointerEvents = "none"
-                        blocktans_addons_filter_overlay.style.zIndex = "9999"
-                        blocktans_addons_filter_overlay.style.backdropFilter = "invert(100%)"
-                        document.body.appendChild(blocktans_addons_filter_overlay)
+                    if (!overlay) {
+                        overlay = document.createElement("div")
+                        overlay.id = "blocktans_addons_invert_filter_overlay"
+                        overlay.style.position = "fixed"
+                        overlay.style.top = "0"
+                        overlay.style.left = "0"
+                        overlay.style.width = "100vw"
+                        overlay.style.height = "100vh"
+                        overlay.style.pointerEvents = "none"
+                        overlay.style.zIndex = "9999"
+                        overlay.style.backdropFilter = "invert(100%)"
+                        document.body.appendChild(overlay)
                     }
                     else {
-                        blocktans_addons_filter_overlay.style.backdropFilter = "invert(100%)"
+                        overlay.style.backdropFilter = "invert(100%)"
                     }
                 }
                 else {
-                    let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (blocktans_addons_filter_overlay && blocktans_addons_filter_overlay.style.backdropFilter === "invert(100%)") {
-                        blocktans_addons_filter_overlay.remove()
+                    if (overlay) {
+                        overlay.remove()
                     }
                 }
             }
@@ -1560,29 +1557,28 @@
             type: "toggle",
             defaultValue: false,
             callback: (value) => {
+                let overlay = document.getElementById("blocktans_addons_saturate_filter_overlay")
                 if (value === true) {
-                    let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (!blocktans_addons_filter_overlay) {
-                        blocktans_addons_filter_overlay = document.createElement("div")
-                        blocktans_addons_filter_overlay.id = "blocktans_addons_filter_overlay"
-                        blocktans_addons_filter_overlay.style.position = "fixed"
-                        blocktans_addons_filter_overlay.style.top = "0"
-                        blocktans_addons_filter_overlay.style.left = "0"
-                        blocktans_addons_filter_overlay.style.width = "100vw"
-                        blocktans_addons_filter_overlay.style.height = "100vh"
-                        blocktans_addons_filter_overlay.style.pointerEvents = "none"
-                        blocktans_addons_filter_overlay.style.zIndex = "9999"
-                        blocktans_addons_filter_overlay.style.backdropFilter = "saturate(150%)"
-                        document.body.appendChild(blocktans_addons_filter_overlay)
+                    if (!overlay) {
+                        overlay = document.createElement("div")
+                        overlay.id = "blocktans_addons_saturate_filter_overlay"
+                        overlay.style.position = "fixed"
+                        overlay.style.top = "0"
+                        overlay.style.left = "0"
+                        overlay.style.width = "100vw"
+                        overlay.style.height = "100vh"
+                        overlay.style.pointerEvents = "none"
+                        overlay.style.zIndex = "9999"
+                        overlay.style.backdropFilter = "saturate(150%)"
+                        document.body.appendChild(overlay)
                     }
                     else {
-                        blocktans_addons_filter_overlay.style.backdropFilter = "saturate(150%)"
+                        overlay.style.backdropFilter = "saturate(150%)"
                     }
                 }
                 else {
-                    let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (blocktans_addons_filter_overlay && blocktans_addons_filter_overlay.style.backdropFilter === "saturate(150%)") {
-                        blocktans_addons_filter_overlay.remove()
+                    if (overlay) {
+                        overlay.remove()
                     }
                 }
             }
@@ -1598,29 +1594,29 @@
             max: 360,
             step: 1,
             callback: (value) => {
-                let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
+                let overlay = document.getElementById("blocktans_addons_hue_filter_overlay")
 
                 if (value.enabled === true && value.value !== "" && value.value !== null) {
                     let hueValue = parseFloat(value.value) || 0
                     hueValue = Math.max(0, Math.min(360, hueValue))
 
-                    if (!blocktans_addons_filter_overlay) {
-                        blocktans_addons_filter_overlay = document.createElement("div")
-                        blocktans_addons_filter_overlay.id = "blocktans_addons_filter_overlay"
-                        blocktans_addons_filter_overlay.style.position = "fixed"
-                        blocktans_addons_filter_overlay.style.top = "0"
-                        blocktans_addons_filter_overlay.style.left = "0"
-                        blocktans_addons_filter_overlay.style.width = "100vw"
-                        blocktans_addons_filter_overlay.style.height = "100vh"
-                        blocktans_addons_filter_overlay.style.pointerEvents = "none"
-                        blocktans_addons_filter_overlay.style.zIndex = "9999"
-                        document.body.appendChild(blocktans_addons_filter_overlay)
+                    if (!overlay) {
+                        overlay = document.createElement("div")
+                        overlay.id = "blocktans_addons_hue_filter_overlay"
+                        overlay.style.position = "fixed"
+                        overlay.style.top = "0"
+                        overlay.style.left = "0"
+                        overlay.style.width = "100vw"
+                        overlay.style.height = "100vh"
+                        overlay.style.pointerEvents = "none"
+                        overlay.style.zIndex = "9999"
+                        document.body.appendChild(overlay)
                     }
-                    blocktans_addons_filter_overlay.style.backdropFilter = `hue-rotate(${hueValue}deg)`
+                    overlay.style.backdropFilter = `hue-rotate(${hueValue}deg)`
                 }
                 else {
-                    if (blocktans_addons_filter_overlay && blocktans_addons_filter_overlay.style.backdropFilter && blocktans_addons_filter_overlay.style.backdropFilter.startsWith("hue-rotate(")) {
-                        blocktans_addons_filter_overlay.remove()
+                    if (overlay) {
+                        overlay.remove()
                     }
                 }
             }
