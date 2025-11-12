@@ -1589,7 +1589,7 @@
             type: "toggle-input",
             inputType: "number",
             placeholder: "Degrees (0-360)",
-            defaultValue: { enabled: true, value: "0" },
+            defaultValue: { enabled: false, value: "0" },
             min: 0,
             max: 360,
             step: 1,
