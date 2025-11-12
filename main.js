@@ -1128,7 +1128,7 @@
                             let savedValue = savedOptions[optionName]
 
                             if (JSON.stringify(currentValue) !== JSON.stringify(savedValue)) {
-                                this.setOption(optionName, savedValue, false)
+                                this.setOption(optionName, savedValue)
                             }
                         }
                     })
@@ -1323,7 +1323,9 @@
                 return
             }
 
-            this.triggerCallback(name, this.state.options[name], false)
+            if (!this.state.isAutoReapplying) {
+                this.triggerCallback(name, this.state.options[name], false)
+            }
         }
 
         onOptionChange(optionName, callback) {
