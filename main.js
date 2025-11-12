@@ -1482,7 +1482,7 @@
                 }
                 else {
                     let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (blocktans_addons_filter_overlay) {
+                    if (blocktans_addons_filter_overlay && blocktans_addons_filter_overlay.style.backdropFilter === "grayscale(100%)") {
                         blocktans_addons_filter_overlay.remove()
                     }
                 }
@@ -1515,7 +1515,7 @@
                 }
                 else {
                     let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (blocktans_addons_filter_overlay) {
+                    if (blocktans_addons_filter_overlay && blocktans_addons_filter_overlay.style.backdropFilter === "sepia(100%)") {
                         blocktans_addons_filter_overlay.remove()
                     }
                 }
@@ -1548,7 +1548,7 @@
                 }
                 else {
                     let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (blocktans_addons_filter_overlay) {
+                    if (blocktans_addons_filter_overlay && blocktans_addons_filter_overlay.style.backdropFilter === "invert(100%)") {
                         blocktans_addons_filter_overlay.remove()
                     }
                 }
@@ -1581,7 +1581,7 @@
                 }
                 else {
                     let blocktans_addons_filter_overlay = document.getElementById("blocktans_addons_filter_overlay")
-                    if (blocktans_addons_filter_overlay) {
+                    if (blocktans_addons_filter_overlay && blocktans_addons_filter_overlay.style.backdropFilter === "saturate(150%)") {
                         blocktans_addons_filter_overlay.remove()
                     }
                 }
@@ -1619,7 +1619,7 @@
                     blocktans_addons_filter_overlay.style.backdropFilter = `hue-rotate(${hueValue}deg)`
                 }
                 else {
-                    if (blocktans_addons_filter_overlay) {
+                    if (blocktans_addons_filter_overlay && blocktans_addons_filter_overlay.style.backdropFilter && blocktans_addons_filter_overlay.style.backdropFilter.startsWith("hue-rotate(")) {
                         blocktans_addons_filter_overlay.remove()
                     }
                 }
