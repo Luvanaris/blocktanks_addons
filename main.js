@@ -489,11 +489,18 @@
 
         attachEventListeners() {
             this.header.addEventListener("mousedown", (e) => this.handleHeaderMouseDown(e))
+            this.header.addEventListener("touchstart", (e) => this.handleHeaderTouchStart(e), { passive: false })
             this.menuIcon.addEventListener("click", (e) => {
                 e.stopPropagation()
                 this.toggleCollapse()
             })
+            this.menuIcon.addEventListener("touchend", (e) => {
+                e.stopPropagation()
+                e.preventDefault()
+                this.toggleCollapse()
+            })
             this.header.addEventListener("mouseup", () => this.savePosition())
+            this.header.addEventListener("touchend", () => this.savePosition())
             this.setupInputEventPausing()
         }
 
@@ -525,10 +532,17 @@
                 }
             }
 
+            this.handleTouchStart = (e) => {
+                if (this.state.inputFocused && !this.menu.contains(e.target)) {
+                    e.stopPropagation()
+                }
+            }
+
             document.addEventListener("keydown", this.handleKeyDown, true)
             document.addEventListener("keyup", this.handleKeyUp, true)
             document.addEventListener("keypress", this.handleKeyPress, true)
             document.addEventListener("mousedown", this.handleMouseDown, true)
+            document.addEventListener("touchstart", this.handleTouchStart, true)
 
             if (typeof game !== "undefined" && game.input) {
                 this.originalInputEnabled = game.input.enabled
@@ -561,6 +575,19 @@
             document.addEventListener("mouseup", this.handleMouseUp = () => this.onMouseUp())
         }
 
+        handleHeaderTouchStart(e) {
+            if (e.target === this.menuIcon || this.menuIcon.contains(e.target)) return
+            e.preventDefault()
+            let touch = e.touches[0]
+            this.state.isDragging = true
+            this.menu.classList.add("dragging")
+            let rect = this.menu.getBoundingClientRect()
+            this.state.dragOffset.x = touch.clientX - rect.left
+            this.state.dragOffset.y = touch.clientY - rect.top
+            document.addEventListener("touchmove", this.handleTouchMove = (e) => this.onTouchMove(e), { passive: false })
+            document.addEventListener("touchend", this.handleTouchEnd = () => this.onTouchEnd())
+        }
+
         onMouseMove(e) {
             if (!this.state.isDragging) return
 
@@ -582,6 +609,29 @@
             }
         }
 
+        onTouchMove(e) {
+            if (!this.state.isDragging) return
+            e.preventDefault()
+
+            let touch = e.touches[0]
+            let x = touch.clientX - this.state.dragOffset.x
+            let y = touch.clientY - this.state.dragOffset.y
+
+            let maxX = window.innerWidth - this.menu.offsetWidth
+            let maxY = window.innerHeight - this.menu.offsetHeight
+            this.menu.style.left = Math.max(0, Math.min(x, maxX)) + "px"
+            this.menu.style.top = Math.max(0, Math.min(y, maxY)) + "px"
+        }
+
+        onTouchEnd() {
+            if (this.state.isDragging) {
+                this.state.isDragging = false
+                this.menu.classList.remove("dragging")
+                document.removeEventListener("touchmove", this.handleTouchMove)
+                document.removeEventListener("touchend", this.handleTouchEnd)
+            }
+        }
+
         addSection(sectionName, switchTo = false) {
             if (this.sections[sectionName]) return this.sections[sectionName]
 
@@ -592,6 +642,10 @@
             tab.textContent = sectionName
             tab.dataset.section = sectionName
             tab.addEventListener("click", () => this.switchTab(sectionName))
+            tab.addEventListener("touchend", (e) => {
+                e.preventDefault()
+                this.switchTab(sectionName)
+            })
             this.tabsContainer.appendChild(tab)
             this.tabs[sectionName] = tab
 
@@ -800,6 +854,17 @@
 
                 this.triggerCallback(optionName, newValue)
             })
+            toggle.addEventListener("touchend", (e) => {
+                e.stopPropagation()
+                e.preventDefault()
+                toggle.classList.toggle("active")
+
+                let optionName = toggle.dataset.option
+                let newValue = toggle.classList.contains("active")
+                this.state.options[optionName] = newValue
+
+                this.triggerCallback(optionName, newValue)
+            })
         }
 
         attachInputListener(input) {
@@ -907,6 +972,20 @@
 
             toggle.addEventListener("click", (e) => {
                 e.stopPropagation()
+                toggle.classList.toggle("active")
+                let enabled = toggle.classList.contains("active")
+
+                let currentValue = this.state.options[optionName] || { enabled: false, value: "" }
+                if (typeof currentValue !== "object") {
+                    currentValue = { enabled: false, value: currentValue }
+                }
+                currentValue.enabled = enabled
+                this.state.options[optionName] = currentValue
+                this.triggerCallback(optionName, currentValue)
+            })
+            toggle.addEventListener("touchend", (e) => {
+                e.stopPropagation()
+                e.preventDefault()
                 toggle.classList.toggle("active")
                 let enabled = toggle.classList.contains("active")
 
@@ -1589,7 +1668,7 @@
             type: "toggle-input",
             inputType: "number",
             placeholder: "Degrees (0-360)",
-            defaultValue: { enabled: false, value: "0" },
+            defaultValue: { enabled: true, value: "0" },
             min: 0,
             max: 360,
             step: 1,
